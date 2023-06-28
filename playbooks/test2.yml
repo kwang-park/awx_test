@@ -3,6 +3,7 @@
   hosts: all
   tasks:
     - name: variable test
-      my_variable2: "{{ TEST_VARIABLE2 }}"
+      set_fact:
+	my_variable2: "{{ TEST_VARIABLE2 }}"
     - name: variable echo test
-      shell: "echo {{ TEST_VARIABLE2 }}"
+      shell: "echo {{ my_variable2 }}"
