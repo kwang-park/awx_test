@@ -3,5 +3,7 @@
   hosts: all
   tasks:
     - name: test awx
-      my_variable: "{{ TEST_VARIABLE }}"
-      shell: "echo {{ my_variable }}"
+      set_fact:
+        my_variable: "{{ TEST_VARIABLE }}"
+    - name: echo test
+        shell: "echo {{ my_variable }}"
