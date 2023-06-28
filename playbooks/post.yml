@@ -1,18 +1,19 @@
 ---
 - name: post to master
   hosts: all
-  uri:
-    url: "http://localhost:8013/api/v2/analytics/reports/"
-    method: POST
-    headers:
-      Content-Type: application/json
-    body_format: json
-    body:
-      name: "My Test Report"
-      type: "execution"
-  register: result
-
   tasks:
-    - name: test
-      shell: |
-        echo {{ result }}
+    - name: Make a POST request
+      uri:
+        url: "http://localhost:8013/api/v2/analytics/reports/"
+        method: POST
+        headers:
+          Content-Type: application/json
+        body_format: json
+        body:
+          name: "My Test Report"
+          type: "execution"
+      register: result
+
+    - name: Print result
+      debug:
+        var: result
