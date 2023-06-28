@@ -3,5 +3,5 @@
   hosts: all
   tasks:
     - name: echo test
-        shell: |
-          echo {{ TEST_VARIABLE }}
+      shell: |
+        echo "{{ TEST_VARIABLE }}"
