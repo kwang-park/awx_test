@@ -4,4 +4,4 @@
   tasks:
     - name: echo test
       shell: |
-        echo "{{ TEST_VARIABLE }}"
+        echo "{{ TEST_VARIABLE2 }}"
