@@ -4,6 +4,6 @@
   tasks:
     - name: variable test
       set_fact:
-	my_variable2: "{{ TEST_VARIABLE2 }}"
+        my_variable2: "{{ TEST_VARIABLE2 }}"
     - name: variable echo test
       shell: "echo {{ my_variable2 }}"
