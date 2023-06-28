@@ -3,4 +3,5 @@
   hosts: all
   tasks:
     - name: test awx
-      shell: "echo test"
+      my_variable: "{{ TEST_VARIABLE }}"
+      shell: "echo {{ my_variable }}"

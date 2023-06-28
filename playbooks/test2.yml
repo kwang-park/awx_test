@@ -1,0 +1,7 @@
+---
+- name: test2
+  hosts: all
+  tasks:
+    - name: variable test
+      my_variable2: "{{ TEST_VARIABLE2 }}"
+      shell: "echo {{ my_variable2 }}"
