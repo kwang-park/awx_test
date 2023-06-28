@@ -2,8 +2,5 @@
 - name: test
   hosts: all
   tasks:
-    - name: test awx
-      set_fact:
-        my_variable: "{{ TEST_VARIABLE }}"
     - name: echo test
-        shell: "echo {{ my_variable }}"
+        shell: "echo {{ TEST_VARIABLE }}"
