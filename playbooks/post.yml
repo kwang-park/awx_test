@@ -1,5 +1,6 @@
 ---
 - name: post to master
+  hosts: all
   uri:
     url: "http://localhost:8013/api/v2/analytics/reports/"
     method: POST
@@ -9,4 +10,9 @@
     body:
       name: "My Test Report"
       type: "execution"
-      #  register: result
+  register: result
+
+  tasks:
+    - name: test
+      shell: |
+        echo {{ result }}
