@@ -1,0 +1,12 @@
+---
+- name: post to master
+  uri:
+    url: "http://localhost:8013/api/v2/analytics/reports/"
+    method: POST
+    headers:
+      Content-Type: application/json
+    body_format: json
+    body:
+      name: "My Test Report"
+      type: "execution"
+  register: result
