@@ -9,4 +9,4 @@
     body:
       name: "My Test Report"
       type: "execution"
-  register: result
+      #  register: result
