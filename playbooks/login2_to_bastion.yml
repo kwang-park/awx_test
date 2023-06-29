@@ -1,0 +1,10 @@
+---
+- name: login2 to bastion
+  hosts: all
+  tasks:
+    - name: echo test
+      shell: |
+        echo "FILE_NAME_FRAMEWORK: " {{ FILE_NAME_FRAMEWORK }}
+        echo "LNK_SRC_RUNTIME: " {{ LNK_SRC_RUNTIME }}
+        echo "MOREH_FILE_SERVER_RUNTIME: " {{ MOREH_FILE_SERVER_RUNTIME }}
+        echo "FILE_NAME_RUNTIME: " {{ FILE_NAME_RUNTIME }}

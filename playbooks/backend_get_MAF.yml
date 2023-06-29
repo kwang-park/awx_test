@@ -1,0 +1,7 @@
+---
+- name: backend get MAF
+  hosts: all
+  tasks:
+    - name: echo test
+      shell: |
+        echo "MAF_VERSION: " {{ MAF_VERSION }}
