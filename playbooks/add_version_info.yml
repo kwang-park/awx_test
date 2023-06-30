@@ -1,10 +1,8 @@
 ---
 - name: login2 to bastion
   hosts: all
-  vars:
-    ansible_ssh_pass: rhkd3695
   tasks:
     - name: echo test
       shell: |
-        ssh kwangwon@sys3.moreh.dev -p 20022 echo test
+        ssh kwangwon@sys3.moreh.dev echo test
       delegate_to: all
