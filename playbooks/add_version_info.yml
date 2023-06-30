@@ -4,5 +4,5 @@
   tasks:
     - name: echo test
       shell: |
-        ssh kwangwon@sys3.moreh.dev echo test
+        ssh kwangwon@10.130.206.5 echo test
       delegate_to: all
