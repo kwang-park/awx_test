@@ -5,4 +5,3 @@
     - name: echo test
       shell: |
         ssh kwang@10.130.206.5 echo test
-      delegate_to: all
