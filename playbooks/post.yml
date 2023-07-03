@@ -7,3 +7,12 @@
         ls | grep framework | awk -F 'moreh-' '{print $2}' | awk -F '-Linux*' '{print $1}'
       register: command_output
       delegate_to: office-mac
+
+- name: get master
+  hosts: all
+  tasks:
+    - name: test no rest api master get
+      debug:
+        var: hostvars[delegate_host].command_output.stdout
+      vars:
+        delegate_host: "{{ inventory_hostname }}"
