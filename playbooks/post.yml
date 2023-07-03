@@ -2,21 +2,8 @@
 - name: post to master
   hosts: all
   tasks:
-    - name: Make a POST request
-      uri:
-        url: "http://localhost:8013/api/v2/analytics/reports/"
-        method: POST
-        headers:
-          Content-Type: application/json
-        body_format: json
-        body:
-          name: "My Test Report"
-          type: "execution"
-        force_basic_auth: yes
-        user: "moreh"
-        password: "Framework4AI!"
-      register: result
-
-    - name: Print result
-      debug:
-        var: result
+    - name: test no rest api
+      shell: |
+        ls | grep framework | awk -F 'moreh-' '{print $2}' | awk -F '-Linux*' '{print $1}'
+      register: command_output
+      delegate_to: office-mac
