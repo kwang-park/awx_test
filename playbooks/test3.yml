@@ -5,5 +5,8 @@
     - name: variable test
       shell: |
         echo "{{ item }}cde"
-      with_items:
-        - "{{ TEST_VAR_LIST }}"
+    - name: variable test2
+      shell: |
+        echo "{{ item }}fgh"
+  with_items:
+    - "{{ TEST_VAR_LIST.split() }}"
