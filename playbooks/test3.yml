@@ -1,7 +1,9 @@
 ---
-- name: test2
+- name: test3
   hosts: all
   tasks:
     - name: variable test
-      debug:
-        var: TEST_VARS
+      shell: |
+        echo "{{ item }}cde"
+      with_items:
+        - {{ TEST_VAR_LIST }}
