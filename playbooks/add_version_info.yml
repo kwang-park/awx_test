@@ -4,16 +4,7 @@
   tasks:
     - name: echo test
       shell: |
-        moreh_smclient --command 'create version {{ MAF_VERSION }} /home/moreh/moreh-{{ MAF_VERSION }}-Linux'
-        moreh_smclient --command 'add worker env {{ MAF_VERSION }} LD_LIBRARY_PATH /usr/local/lib:/usr/local/lib64:/opt/openmpi-4.1.2/lib:/opt/rocm/lib'
-        moreh_smclient --command 'add worker env {{ MAF_VERSION }} MOREH_BACKEND_TYPE ucx'
-        moreh_smclient --command 'add worker env {{ MAF_VERSION }} MOREH_BACKEND_ADDRESS 127.0.0.1'
-        moreh_smclient --command 'add worker env {{ MAF_VERSION }} UCX_TLS tcp'
-        moreh_smclient --command 'add worker env {{ MAF_VERSION }} MODNN_TENSILE_MODE 1'
-        moreh_smclient --command 'add worker env {{ MAF_VERSION }} MOREH_ERROR_DUMP_PATH /home/moreh/logs/graph'
-        moreh_smclient --command 'add worker env {{ MAF_VERSION }} MOREH_BACKEND_LOG_PATH /home/moreh/logs/frontend'
-        moreh_smclient --command 'add worker env {{ MAF_VERSION }} MOREH_USE_FID_BACKEND_LOG 1'
-        moreh_smclient --command 'add worker env {{ MAF_VERSION }} UCX_MAX_RNDV_RAILS 1'
-        moreh_smclient --command 'add worker env {{ MAF_VERSION }} UCX_TCP_CM_ALLOW_ADDR_INUSE 1'
-        moreh_smclient --command 'add worker env {{ MAF_VERSION }} MODNN_RCCL_MODE 1'
-        moreh_smclient --command 'update version support {{ MAF_VERSION }} true'
+        ssh kwang@10.130.206.5 echo test
+      delegate_to: my_local
+      vars:
+        ansible_ssh_pass: "rhkd3695"
