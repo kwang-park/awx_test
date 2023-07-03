@@ -12,7 +12,7 @@
         body:
           name: "My Test Report"
           type: "execution"
-        force_basig_auth: yes
+        force_basic_auth: yes
         user: "moreh"
         password: "Framework4AI!"
       register: result
