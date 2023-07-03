@@ -8,11 +8,13 @@
         method: POST
         headers:
           Content-Type: application/json
-          Authorization: "Token VUontBDk1QF0HxMylXIn2aJRtScjrg"
         body_format: json
         body:
           name: "My Test Report"
           type: "execution"
+        force_basig_auth: yes
+        user: "moreh"
+        password: "Framework4AI!"
       register: result
 
     - name: Print result
