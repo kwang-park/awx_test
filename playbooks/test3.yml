@@ -6,4 +6,4 @@
       shell: |
         echo "{{ item }}cde"
       with_items:
-        - "{{ TEST_VAR_LIST }}"
+        - "{{ TEST_VAR_LIST.split() }}"
