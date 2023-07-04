@@ -2,11 +2,6 @@
 - name: test2
   hosts: all
   tasks:
-    - name: get test variable
-      awx_artifacts:
-        name: result
-      register: result_artifacts
-
     - name: print
       debug:
-        var: result_artifacts.content
+        var: test_var

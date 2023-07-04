@@ -3,11 +3,6 @@
   hosts: all
   tasks:
     - name: echo test
-      shell: |
-        echo "Hello, world"
-      register: result
+      set_fact: |
+        test_var: "Hello, world"
 
-    - name: set variable
-      awx_artifacts:
-        name: result
-        content: "{{ result.stdout }}"
