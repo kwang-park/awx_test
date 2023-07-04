@@ -12,12 +12,12 @@
         method: POST
         headers:
           Content-Type: application/json
-          body_format: json
-          body:
-            extra_vars:
-              ENABLED_VERSION: "def"
-              body_oneline: yes
-              force_basic_auth: yes
-              user: "moreh"
-              password: "Framework4AI!"
-              validate_certs: no
+        body_format: json
+        body:
+          extra_vars:
+            ENABLED_VERSION: "def"
+        body_oneline: yes
+        force_basic_auth: yes
+        user: "moreh"
+        password: "Framework4AI!"
+        validate_certs: no
