@@ -3,9 +3,21 @@
   hosts: all
   tasks:
     - name: echo test
-      set_fact: |
+      set_fact:
         test_var: "Hello, world"
 
     - name: rest api test
-      shell: |
-        curl --silent --insecure --user "moreh:Framework4AI!" --location --request POST --header 'Content-Type: application/json' "http://localhost:8013/api/v2/job_templates/10/launch/" --data @<(cat <<EOF { "extra_vars": { "ENABLED_VERSION": "def" } } EOF)
+      uri:
+        url: "http://localhost:8013/api/v2/job_templates/10/launch/"
+        method: POST
+        headers:
+          Content-Type: application/json
+          body_format: json
+          body:
+            extra_vars:
+              ENABLED_VERSION: "def"
+              body_oneline: yes
+              force_basic_auth: yes
+              user: "moreh"
+              password: "Framework4AI!"
+              validate_certs: no
