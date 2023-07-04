@@ -14,9 +14,10 @@
           Content-Type: application/json
         body_format: json
         body:
-          extra_vars: |
-            "{\"ENABLED_VERSION\": \"def\"}"
+          defaults:
+            extra_vars:
+              ENABLED_VERSION: "def"
         force_basic_auth: yes
         user: "moreh"
         password: "Framework4AI!"
-        validate_certs: no
+        validate_certs: false
