@@ -4,4 +4,4 @@
   tasks:
     - name: print
       shell: |
-        echo "{{ ENABLED_VERSION }}"
+        echo "{{ TEST_VARIABLE }}"
