@@ -5,3 +5,5 @@
     - name: echo test
       shell: |
         echo "{{ TEST_VARIABLE2 }}"
+      set_fact:
+        {{ TEST_VARIABLE2 }}: "aaaa"
