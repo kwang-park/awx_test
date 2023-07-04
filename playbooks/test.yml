@@ -9,6 +9,7 @@
     - name: rest api test
       uri:
         url: "http://localhost:8013/api/v2/job_templates/10/launch/"
+        status_code: 201
         method: POST
         headers:
           Content-Type: application/json
