@@ -7,7 +7,7 @@
         test_var: "Hello, world"
 
     - name: AWX Job Template Launch
-      awx.awx.awx_job_template_launch:
+      awx.awx_job_template_launch:
         job_template_id: 10
         extra_vars:
           ENABLED_VERSION: "def"
