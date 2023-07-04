@@ -10,5 +10,5 @@
     - name: print
       debug:
         msg:
-          - "test : {{ test_var }}"
+          - "test : {{ test_var.stdout }}"
       when: test_var.stdout is defined and test_var.stdout != ""
