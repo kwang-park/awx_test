@@ -2,5 +2,11 @@
 - name: test2
   hosts: all
   tasks:
-    - name: variable echo test
-      shell: "echo {{ TEST_VARIABLE2 }}"
+    - name: get test variable
+      awx_artifacts:
+        name: result
+      register: result_artifacts
+
+    - name: print
+      debug:
+        var: result_artifacts.content

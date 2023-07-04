@@ -4,8 +4,10 @@
   tasks:
     - name: echo test
       shell: |
-        echo "{{ TEST_VARIABLE2 }}"
+        echo "Hello, world"
+      register: result
 
     - name: set variable
-      set_fact:
-        TEST_VARIABLE2: "aaaa"
+      awx_artifacts:
+        name: result
+        content: "{{ result.stdout }}"
