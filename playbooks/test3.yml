@@ -4,9 +4,11 @@
   tasks:
     - name: variable test
       shell: |
-        echo "{{ item }}cde"
-    - name: variable test2
-      shell: |
-        echo "{{ item }}fgh"
-  with_items:
-    - "{{ TEST_VAR_LIST.split() }}"
+        echo `ls $HOME | grep ff`
+      register: test_var
+
+    - name: print
+      debug:
+        msg:
+          - "test : {{ test_var }}"
+      when: test_var.stdout is defined and test_var.stdout != ""
