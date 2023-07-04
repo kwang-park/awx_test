@@ -5,3 +5,5 @@
     - name: echo test
       vars:
         TEST_VARIABLE: "zzzzzzzzzz"
+      debug:
+        msg: "{{ TEST_VARIABLE }}"
