@@ -3,5 +3,5 @@
   hosts: all
   tasks:
     - name: print
-      debug:
-        var: test_var
+      shell: |
+        echo "{{ ENABLED_VERSION }}"
