@@ -1,12 +1,7 @@
 ---
-- name: test3
+- name: Example Playbook
   hosts: all
   tasks:
-    - name: variable test
-      shell: |
-        echo "{{ item }}cde"
-    - name: variable test2
-      shell: |
-        echo "{{ item }}fgh"
-  with_items:
-    - "{{ TEST_VAR_LIST.split() }}"
+    - name: Show Hostname and Inventory File
+      debug:
+        msg: "Hostname: {{ inventory_hostname }}, Inventory File: {{ inventory_file }}"
