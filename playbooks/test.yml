@@ -6,17 +6,38 @@
       set_fact:
         test_var: "Hello, world"
 
-    - name: rest api test
-      uri:
-        url: "http://localhost:8013/api/v2/job_templates/10/launch/"
-        method: POST
-        headers:
-          Content-Type: application/json
-        body_format: json
-        body:
-          extra_vars:
-            '{"ENABLED_VERSION": "def"}'
-        force_basic_auth: yes
-        user: "moreh"
-        password: "Framework4AI!"
-        validate_certs: no
+    - name: AWX Job Template Launch
+      awx.awx.awx_job_template_launch:
+        job_template_id: 10
+        extra_vars:
+          ENABLED_VERSION: "def"
+        awx_host: "http://localhost"
+        awx_username: "moreh"
+        awx_password: "Framework4AI!"
+        validate_certs: False
+      register: launch_result
+
+    - debug:
+      var: launch_result
+
+      #- name: test
+      #  hosts: all
+      #  tasks:
+      #    - name: echo test
+      #      set_fact:
+      #        test_var: "Hello, world"
+      #
+      #    - name: rest api test
+      #      uri:
+      #        url: "http://localhost:8013/api/v2/job_templates/10/launch/"
+      #        method: POST
+      #        headers:
+      #          Content-Type: application/json
+      #        body_format: json
+      #        body:
+      #          extra_vars:
+      #            '{"ENABLED_VERSION": "def"}'
+      #        force_basic_auth: yes
+      #        user: "moreh"
+      #        password: "Framework4AI!"
+      #        validate_certs: no
