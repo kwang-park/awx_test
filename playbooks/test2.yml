@@ -22,4 +22,4 @@
 
     - name: print
       debug:
-        var: variable.stdout
+        var: variable[*]
