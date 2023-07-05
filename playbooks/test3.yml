@@ -2,13 +2,10 @@
 - name: Example Playbook
   hosts: all
   tasks:
-    - name: variable test
-      shell: |
-        echo `ls $HOME | grep ff`
-      register: test_var
+    - name: test
+      set_fact:
+        TEST_VAR: "{{ TEST_VAR | replace(\"'\", '') }}"
 
     - name: print
       debug:
-        msg:
-          - "test : {{ test_var.stdout }}"
-      when: test_var.stdout is defined and test_var.stdout != ""
+        var: TEST_VAR
