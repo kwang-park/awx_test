@@ -3,21 +3,7 @@
   hosts: all
   tasks:
     - name: echo test
-      set_fact:
-        test_var: "Hello, world"
-
-    - name: rest api test
-      uri:
-        url: "http://localhost:8013/api/v2/job_templates/10/launch/"
-        status_code: 201
-        method: POST
-        headers:
-          Content-Type: application/json
-        body_format: json
-        body:
-          extra_vars:
-            ENABLED_VERSION: "def"
-        force_basic_auth: yes
-        user: "moreh"
-        password: "Framework4AI!"
-        validate_certs: false
+      vars:
+        TEST_VARIABLE: "zzzzzzzzzz"
+      debug:
+        msg: "{{ TEST_VARIABLE }}"
