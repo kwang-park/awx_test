@@ -2,6 +2,20 @@
 - name: test2
   hosts: all
   tasks:
+    - name: get necessary version list
+      uri:
+        url: "http://localhost:8013/api/v2/jobs/298/stdout/?format=json"
+        method: GET
+        status_code: 200
+        headers:
+          Content-Type: application/json
+        body_format: json
+        force_basic_auth: yes
+        user: "moreh"
+        password: "Framework4AI!"
+        validate_certs: false
+      register: response_result
+
     - name: print
-      shell: |
-        echo "{{ ENABLED_VERSION }}"
+      debug:
+        var: response_result
