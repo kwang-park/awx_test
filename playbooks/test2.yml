@@ -8,4 +8,4 @@
 
     - name: print
       debug:
-        var: {{ test_var }}
+        var: "{{ test_var }}"
