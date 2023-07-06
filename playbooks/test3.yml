@@ -18,7 +18,7 @@
 
     - name: get list
       set_fact:
-        test_list: "{{ response_result.json.content | from_json | regex_findall('\"test_var\": \\[(.*?)\\]', ignorecase=True) | first | default([]) | from_json }}"
+        test_list: "{{ response_result.json.content | to_json }}"
 
 
     - name: print
