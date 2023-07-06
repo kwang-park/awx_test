@@ -6,10 +6,6 @@
       set_fact:
         test_var: "{{ TEST_VAR.split(' ') }}"
 
-    - name: echo test
-      shell: |
-        echo "test_var11 : " test_var
-
     - name: print
       debug:
         var: test_var
