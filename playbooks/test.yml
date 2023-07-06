@@ -4,7 +4,7 @@
   tasks:
     - name: echo test
       uri:
-        url: "http://localhost:8013/api/v2/workflow_job_templates/10/launch/"
+        url: "http://localhost:8013/api/v2/job_templates/10/launch/"
         method: POST
         status_code: 201
         headers:
