@@ -23,4 +23,4 @@
 
     - name: print
       debug:
-        var: test_list
+        var: test_list.test_list
