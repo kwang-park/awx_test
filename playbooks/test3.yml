@@ -2,10 +2,24 @@
 - name: Example Playbook
   hosts: all
   tasks:
-    - name: test
+    - name: get job stdout
+      uri:
+        url: "http://localhost:8013/api/v2/jobs/326/stdout?format=json"
+        method: GET
+        status_code: 200
+        headers:
+          Content-Type: application/json
+        body_format: json
+        force_basic_auth: yes
+        user: "moreh"
+        password: "Framework4AI!"
+        validate_certs: false
+      register: response_result
+
+    - name: get list
       set_fact:
-        TEST_VAR2: "{{ TEST_VAR | replace(\"'\", '') }}"
+        test_list: "{{ response_result.json.content.test_var }}"
 
     - name: print
       debug:
-        var: TEST_VAR2
+        var: test_list
