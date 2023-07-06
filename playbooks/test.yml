@@ -7,3 +7,10 @@
         TEST_VARIABLE: "zzzzzzzzzz"
       debug:
         msg: "{{ TEST_VARIABLE }}"
+
+- name: test2
+  hosts: test_host
+  tasks:
+    - name: echo test2
+      debug:
+        msg: "abcdefg"
