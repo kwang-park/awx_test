@@ -7,6 +7,6 @@
         test_var: "{{ TEST_VAR.split(' ') }}"
 
     - name: print
-      debug:
-        var: item
+      shell: |
+        echo {{ item }}
       loop: "{{ test_var }}"
