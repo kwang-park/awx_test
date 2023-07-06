@@ -18,9 +18,9 @@
 
     - name: get list
       set_fact:
-        test_list: "{{ response_result.json.content | to_json }}"
+        test_list: "{{ response_result.json.content | from_json }}"
 
 
     - name: print
       debug:
-        var: test_list.test_list
+        var: test_list
