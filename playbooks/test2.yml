@@ -3,10 +3,6 @@
   hosts: all
   tasks:
     - name: get necessary version list
-      set_fact:
-        test_var: "{{ TEST_VAR.split(' ') }}"
-
-    - name: print
       shell: |
-        echo {{ item }}
-      loop: "{{ test_var }}"
+        echo {{ TEST_VAR1 }}
+        echo {{ TEST_VAR2 }}

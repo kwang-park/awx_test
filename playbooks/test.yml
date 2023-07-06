@@ -3,14 +3,17 @@
   hosts: all
   tasks:
     - name: echo test
-      vars:
-        TEST_VARIABLE: "zzzzzzzzzz"
-      debug:
-        msg: "{{ TEST_VARIABLE }}"
-
-- name: test2
-  hosts: test_host
-  tasks:
-    - name: echo test2
-      debug:
-        msg: "abcdefg"
+      uri:
+        url: "http://localhost:8013/api/v2/workflow_job_templates/10/launch/"
+        method: POST
+        status_code: 201
+        headers:
+          Content-Type: application/json
+        body_format: json
+        body:
+          extra_vars:
+            TEST_VAR1: "abcdefg"
+        force_basic_auth: yes
+        user: "moreh"
+        password: "{{ PASSWORD }}"
+        validate_certs: false
