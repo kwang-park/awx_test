@@ -3,23 +3,9 @@
   hosts: all
   tasks:
     - name: get necessary version list
-      uri:
-        url: "http://localhost:8013/api/v2/jobs/308/stdout/?format=json"
-        method: GET
-        status_code: 200
-        headers:
-          Content-Type: application/json
-        body_format: json
-        force_basic_auth: yes
-        user: "moreh"
-        password: "Framework4AI!"
-        validate_certs: false
-      register: response_result
-
-    - name: set variable
       set_fact:
-        variable: "{{ response_result.json.content | regex_findall('test : ([^\\n]+)') | unique }}"
+        test_var: "{{ TEST_VAR.split(' ') }}"
 
     - name: print
       debug:
-        var: variable[*]
+        var: {{ test_var }}
