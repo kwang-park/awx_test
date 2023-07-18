@@ -4,7 +4,7 @@
   tasks:
     - name: echo test
       uri:
-        url: "http://localhost:8013/api/v2/hosts/?host_filter=name=home-mac and inventory=2"
+        url: "http://localhost:8013/api/v2/hosts/?host_filter=name=home-mac%20and%20inventory=2"
         method: GET
         status_code: 200
         headers:
