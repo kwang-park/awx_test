@@ -4,16 +4,18 @@
   tasks:
     - name: echo test
       uri:
-        url: "http://localhost:8013/api/v2/job_templates/10/launch/"
-        method: POST
-        status_code: 201
+        url: "http://localhost:8013/api/v2/hosts/?host_filter=name=home-mac and inventory=2"
+        method: GET
+        status_code: 200
         headers:
           Content-Type: application/json
         body_format: json
-        body:
-          extra_vars:
-            TEST_VAR1: "abcdefg"
         force_basic_auth: yes
         user: "moreh"
         password: "{{ PASSWORD }}"
         validate_certs: false
+      register: response_result
+
+    - name: print
+      debug:
+        var: response_result
