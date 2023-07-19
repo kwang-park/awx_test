@@ -39,10 +39,10 @@
         body:
           name: "home-mac"
           inventory: 2
-          enabled: ENABLED
+          enabled: "{{ ENABLED }}"
         force_basic_auth: yes
         user: "moreh"
         password: "{{ PASSWORD }}"
         validate_certs: false
       register: response_result
-      when: ENABLED != "{{ enabled_status }}"
+      when: ENABLED != enabled_status
