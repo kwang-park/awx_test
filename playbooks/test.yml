@@ -2,9 +2,27 @@
 - name: test
   hosts: all
   tasks:
+    - name: get host info
+      uri:
+        url: "http://localhost:8013/api/v2/hosts/?host_flter=name=home-mac%20and%20inventory=2"
+        method: GET
+        status_code: 200
+        headers:
+          Content-Type: application/json
+        body_format: json
+        force_basic_auth: yes
+        user: "moreh"
+        password: "{{ PASSWORD }}"
+        validate_certs: false
+      register: host_info
+
+    - name: set host id
+      set_fact:
+        host_id: "{{ host_info.json.results.id }}"
+
     - name: change enabled test
       uri:
-        url: "http://localhost:8013/api/v2/hosts/3/"
+        url: "http://localhost:8013/api/v2/hosts/{{ host_id }}/"
         method: PUT
         status_code: 200
         headers:
@@ -13,7 +31,7 @@
         body:
           name: "home-mac"
           inventory: 2
-          enabled: true
+          enabled: false
         force_basic_auth: yes
         user: "moreh"
         password: "{{ PASSWORD }}"
