@@ -4,7 +4,7 @@
   tasks:
     - name: echo test
       uri:
-        url: "http://localhost:8013/api/v2/hosts/"
+        url: "http://localhost:8013/api/v2/hosts/3"
         method: PUT
         status_code: 200
         headers:
