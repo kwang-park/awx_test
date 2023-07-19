@@ -18,7 +18,7 @@
 
     - name: set host id
       set_fact:
-        host_id: "{{ host_info.json.results.id }}"
+        host_id: "{{ host_info.json.results[0].id }}"
 
     - name: change enabled test
       uri:
