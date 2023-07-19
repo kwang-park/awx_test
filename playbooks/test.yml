@@ -39,7 +39,7 @@
         body:
           name: "home-mac"
           inventory: 2
-          enabled: false
+          enabled: ENABLED
         force_basic_auth: yes
         user: "moreh"
         password: "{{ PASSWORD }}"
