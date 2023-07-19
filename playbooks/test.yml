@@ -20,6 +20,14 @@
       set_fact:
         host_id: "{{ host_info.json.results[0].id }}"
 
+    - name: set enabled
+      set_fact:
+        enabled_status: "{{ host_info.json.results[0].enabled }}"
+
+    - name: print
+      debug:
+        var: enabled_status
+
     - name: change enabled test
       uri:
         url: "http://localhost:8013/api/v2/hosts/{{ host_id }}/"
@@ -37,7 +45,4 @@
         password: "{{ PASSWORD }}"
         validate_certs: false
       register: response_result
-
-    - name: print
-      debug:
-        var: response_result
+      when: ENABLED != "{{ enabled_status }}"
