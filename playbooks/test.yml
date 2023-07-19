@@ -4,13 +4,15 @@
   tasks:
     - name: echo test
       uri:
-        url: "http://localhost:8013/api/v2/hosts/?host_filter=name=home-mac%20and%20inventory=2"
+        url: "http://localhost:8013/api/v2/hosts/"
         method: POST
         status_code: 201
         headers:
           Content-Type: application/json
         body_format: json
         body:
+          name: "home-mac"
+          inventory: 2
           enabled: true
         force_basic_auth: yes
         user: "moreh"
