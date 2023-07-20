@@ -3,7 +3,7 @@
   hosts: all
   tasks:
     - name: get necessary version list
-      shell:
+      command:
         cmd: |
           echo {{ TEST_VAR1 }}
       executable: /bin/bash
