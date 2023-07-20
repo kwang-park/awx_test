@@ -39,5 +39,5 @@
         password: "{{ PASSWORD }}"
         validate_certs: false
       register: response_result
-      when: item.enabled == "false"
+      when: item.enabled == false
       loop: "{{ host_id }}"
