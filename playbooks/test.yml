@@ -20,7 +20,7 @@
     - name: set host id list
       set_fact:
         host_id: "{{ host_id | default([]) + [item.json.results[0]] }}"
-      loop: "{{ host_info_tmp }}"
+      loop: "{{ host_info_tmp.results }}"
 
     - name: change enabled test
       uri:
