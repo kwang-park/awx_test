@@ -3,6 +3,12 @@
   hosts: all
   tasks:
     - name: get necessary version list
-      shell: |
-        echo {{ TEST_VAR1 }}
-        echo {{ TEST_VAR2 }}
+      shell:
+        cmd: |
+          echo {{ TEST_VAR1 }}
+      executable: /bin/bash
+      register: test
+
+    - name: print test
+      debug:
+        var: test
