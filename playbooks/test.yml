@@ -4,7 +4,7 @@
   tasks:
     - name: get host info
       uri:
-        url: "http://localhost:8013/api/v2/hosts/?host_filter=name=home-mac%20and%20inventory=2"
+        url: "http://localhost:8013/api/v2/hosts/?host_filter=name=office-mac%20and%20inventory=2"
         method: GET
         status_code: 200
         headers:
@@ -33,7 +33,7 @@
         body:
           name: "{{ item.name }}"
           inventory: 2
-          enabled: "true"
+          enabled: "{{ ENABLED_TO }}"
         force_basic_auth: yes
         user: "moreh"
         password: "{{ PASSWORD }}"
