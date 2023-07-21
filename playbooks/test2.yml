@@ -15,4 +15,4 @@
 
     - name: test
       shell: |
-        "{{ command_to_test }}"
+        {{ command_to_test }}
