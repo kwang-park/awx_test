@@ -2,13 +2,17 @@
 - name: test2
   hosts: all
   tasks:
-    - name: get necessary version list
-      command:
-        cmd: |
-          echo {{ TEST_VAR1 }}
-      executable: /bin/bash
-      register: test
+    - name: set command
+      set_fact:
+        command_to_test: >-
+          {% if TT == 'a' %}
+            echo 'aaaaa'
+          {% elif TT == 'b' %}
+            echo 'bbbbb'
+          {% else %}
+            echo 'ccccc'
+          {% endif %}
 
-    - name: print test
-      debug:
-        var: test
+    - name: test
+      shell: |
+        "{{ command_to_test }}"
