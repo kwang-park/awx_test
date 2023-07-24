@@ -4,18 +4,17 @@
   tasks:
     - name: launch test with inventory
       uri: "http://localhost:8013/api/v2/job_templates/20/launch/"
-      method: POST
-      status_code: 201
-      headers:
-        Content-Type: application/json
-      body_format: json
-      body:
-        inventory:
-          "name": "my_inven"
-        extra_vars:
-          TEST_VAR: "1.7.1 1.10.0"
-      force_basic_auth: yes
-      user: "moreh"
-      password: "Framework4AI!"
-      validate_certs: false
-
+        method: POST
+        status_code: 201
+        headers:
+          Content-Type: application/json
+        body_format: json
+        body:
+          inventory:
+            "name": "my_inven"
+          extra_vars:
+            TEST_VAR: "1.7.1 1.10.0"
+        force_basic_auth: yes
+        user: "moreh"
+        password: "Framework4AI!"
+        validate_certs: false
