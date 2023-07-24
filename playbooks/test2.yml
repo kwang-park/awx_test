@@ -3,7 +3,8 @@
   hosts: all
   tasks:
     - name: launch test with inventory
-      uri: "http://localhost:8013/api/v2/job_templates/20/launch/"
+      uri:
+        url: "http://localhost:8013/api/v2/job_templates/20/launch/"
         method: POST
         status_code: 201
         headers:
