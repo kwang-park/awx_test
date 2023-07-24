@@ -12,7 +12,8 @@
         body_format: json
         body:
           inventory:
-            "name": "my_inven"
+            name: "my_inven"
+            id: 3
           extra_vars:
             TEST_VAR: "1.7.1 1.10.0"
         force_basic_auth: yes
