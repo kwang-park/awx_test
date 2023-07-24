@@ -2,17 +2,20 @@
 - name: test2
   hosts: all
   tasks:
-    - name: set command
-      set_fact:
-        command_to_test: >-
-          {% if TT == 'a' %}
-            echo 'aaaaa'
-          {% elif TT == 'b' %}
-            echo 'bbbbb'
-          {% else %}
-            echo 'ccccc'
-          {% endif %}
+    - name: launch test with inventory
+      uri: "http://localhost:8013/api/v2/job_templates/20/launch/"
+      method: POST
+      status_code: 201
+      headers:
+        Content-Type: application/json
+      body_format: json
+      body:
+        inventory:
+          "name": "my_inven"
+        extra_vars:
+          TEST_VAR: "1.7.1 1.10.0"
+      force_basic_auth: yes
+      user: "moreh"
+      password: "Framework4AI!"
+      validate_certs: false
 
-    - name: test
-      shell: |
-        {{ command_to_test }}
