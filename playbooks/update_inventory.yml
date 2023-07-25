@@ -1,0 +1,36 @@
+---
+- name: update inventory
+  hosts: all
+  tasks:
+    - name: get active node lists
+      set_fact:
+        active_node_list_db: ["office-mac"]
+     
+    - name: print active node list
+      debug:
+        var: active_node_list_db.stdout
+
+    - name: get active host info
+      uri:
+        url: "http://localhost:8013/api/v2/hosts/?host_filter=inventory={{ INVENTORY_ID }}%20and%20enabled=true"
+        method: GET
+        status_code: 200
+        headers:
+          Content-Type: application/json
+        body_format: json
+        force_basic_auth: yes
+        user: "{{ USER }}"
+        password: "{{ PASSWORD }}"
+        validate_certs: false
+      register: active_host_info_inven
+
+    - name: set active host list
+      set_fact:
+        active_host_info_list: "{{ active_host_info_list | default([]) + [item.json] }}"
+      when: item.json.name in active_node_list_db
+      loop: "{{ active_host_info_inven.results }}"
+
+    - name: print active node list (test)
+      debug:
+        var: active_host_info_list.json.name
+      loop: "{{ active_host_info_list }}"
