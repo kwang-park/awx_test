@@ -4,7 +4,7 @@
   tasks:
     - name: get active node lists
       set_fact:
-        active_node_list_db: ["office-mac"]
+        active_node_list_db: ["2", "3", "5", "6", "8", "9"]
      
     - name: print active node list
       debug:
