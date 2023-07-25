@@ -24,13 +24,38 @@
         validate_certs: false
       register: active_host_info_inven
 
+    - name: set shutdown host list
+      set_fact:
+        shutdown_host_info_list: "{{ shutdown_host_info_list | default([]) + [item] }}"
+      when: item.name not in active_node_list_db
+      loop: "{{ active_host_info_inven.json.results }}"
+
+    - name: get shutdown host info
+      uri:
+        url: "http://localhost:8013/api/v2/hosts/?host_filter=inventory={{ INVENTORY_ID }}%20and%20enabled=false"
+        method: GET
+        status_code: 200
+        headers:
+          Content-Type: application/json
+        body_format: json
+        force_basic_auth: yes
+        user: "{{ USER }}"
+        password: "{{ PASSWORD }}"
+        validate_certs: false
+      register: shutdown_host_info_inven
+
     - name: set active host list
       set_fact:
         active_host_info_list: "{{ active_host_info_list | default([]) + [item] }}"
       when: item.name in active_node_list_db
-      loop: "{{ active_host_info_inven.json.results }}"
+      loop: "{{ shutdown_host_info_inven.json.results }}"
 
     - name: print active node list (test)
       debug:
         var: item.name
       loop: "{{ active_host_info_list }}"
+
+    - name: print shutdown node list (test)
+      debug:
+        var: item.name
+      loop: "{{ shutdown_host_info_list }}"
