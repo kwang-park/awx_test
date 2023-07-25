@@ -32,5 +32,5 @@
 
     - name: print active node list (test)
       debug:
-        var: active_host_info_list.name
+        var: item.name
       loop: "{{ active_host_info_list }}"
