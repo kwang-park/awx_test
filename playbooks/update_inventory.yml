@@ -28,7 +28,7 @@
       set_fact:
         active_host_info_list: "{{ active_host_info_list | default([]) + [item.json] }}"
       when: item.json.name in active_node_list_db
-      loop: "{{ active_host_info_inven.results }}"
+      loop: "{{ active_host_info_inven.json.results }}"
 
     - name: print active node list (test)
       debug:
