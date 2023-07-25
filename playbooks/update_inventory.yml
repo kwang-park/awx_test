@@ -8,7 +8,7 @@
      
     - name: print active node list
       debug:
-        var: active_node_list_db.stdout
+        var: active_node_list_db
 
     - name: get active host info
       uri:
@@ -26,11 +26,11 @@
 
     - name: set active host list
       set_fact:
-        active_host_info_list: "{{ active_host_info_list | default([]) + [item.json] }}"
-      when: item.json.name in active_node_list_db
+        active_host_info_list: "{{ active_host_info_list | default([]) + [item] }}"
+      when: item.name in active_node_list_db
       loop: "{{ active_host_info_inven.json.results }}"
 
     - name: print active node list (test)
       debug:
-        var: active_host_info_list.json.name
+        var: active_host_info_list.name
       loop: "{{ active_host_info_list }}"
