@@ -15,18 +15,23 @@
         password: "{{ PASSWORD }}"
         validate_certs: false
       register: host_info_tmp
-      until: host_info_tmp.json.next == "null"
+
+    - name: Parse Link header
+      set_fact:
+        total_pages: "{{ host_info_tmp.headers.Link | regex_findall('page=(\\d+)') | map('int') | max }}"
+
+      #until: host_info_tmp.json.next == "null"
       #until: host_info_tmp.json.next is 'null'
       #until: "{{ host_info_tmp.json.next is 'null' }}"
       #until: host_info_tmp.json.next is {{ null }}
       #until: host_info_tmp.json.next is null
       #until: {% if host_info_tmp.json.next is null %} true {% else %} false {% endif %}
 
-    - name: Combine all results
-      set_fact:
-        combined_results: "{{ combined_results | default([]) + host_info_tmp.json }}"
-
-    - name: print next
-      debug:
-        var: "{{ item.next }}"
-      loop: combined_results
+        #    - name: Combine all results
+        #      set_fact:
+        #        combined_results: "{{ combined_results | default([]) + host_info_tmp.json }}"
+        #
+        #    - name: print next
+        #      debug:
+        #        var: "{{ item.next }}"
+        #      loop: combined_results
