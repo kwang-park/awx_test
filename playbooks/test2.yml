@@ -21,6 +21,14 @@
       set_fact:
         total_pages: "{{ host_info_tmp1.json | regex_findall('page=(\\d+)') | map('int') | max }}"
 
+    - name: Parse Link header
+      set_fact:
+        total_pages_tmp: "{{ host_info_tmp1.json | regex_findall('page=(\\d+)') | map('int') | max }}"
+
+    - name: Convert total_pages to int
+      set_fact:
+        total_pages: "{{ toal_pages_tmp | int }}"
+
     - name: get host test
       uri:
         url: "http://localhost:8013/api/v2/hosts/?page={{ item }}"
@@ -35,4 +43,4 @@
         validate_certs: false
         return_content: yes
       register: host_info_tmp2
-      loop: "{{ range(1, {{ total_pages }} + 1) | list }}"
+      loop: "{{ range(1, total_pages + 1) | list }}"
