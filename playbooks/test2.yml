@@ -2,19 +2,20 @@
 - name: test2
   hosts: all
   tasks:
-    - name: launch test with inventory
+    - name: get host test
       uri:
-        url: "http://localhost:8013/api/v2/job_templates/20/launch/"
-        method: POST
-        status_code: 201
+        url: "http://localhost:8013/api/v2/hosts/"
+        method: GET
+        status_code: 200
         headers:
           Content-Type: application/json
         body_format: json
-        body:
-          inventory: my_inven
-          extra_vars:
-            TEST_VAR: "1.7.1 1.10.0"
         force_basic_auth: yes
         user: "moreh"
-        password: "Framework4AI!"
+        password: "{{ PASSWORD }}"
         validate_certs: false
+      register: host_info_tmp
+
+    - name: print next
+      debug:
+        var: host_info_tmp.json.next
