@@ -15,7 +15,7 @@
         password: "{{ PASSWORD }}"
         validate_certs: false
       register: host_info_tmp
-      until: host_info_tmp.json.next == "null" or host_info_tmp.json.next is not defined
+      until: host_info_tmp.json.next is null or host_info_tmp.json.next is not defined
 
     - name: Combine all results
       set_fact:
