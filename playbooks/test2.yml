@@ -39,4 +39,5 @@
 
     - name: print test
       debug:
-        var: host_info_tmp2
+        var: item.json.results
+      loop: "{{ host_info_tmp2.results }}"
