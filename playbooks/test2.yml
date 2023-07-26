@@ -36,3 +36,8 @@
         return_content: yes
       register: host_info_tmp2
       loop: "{{ range(1, total_pages | int + 1) | list }}"
+
+    - name: print test
+      debug:
+        var: item.json
+      loop: "{{ host_info_tmp2 }}"
