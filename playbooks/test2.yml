@@ -15,7 +15,7 @@
         password: "{{ PASSWORD }}"
         validate_certs: false
       register: host_info_tmp
-      until: {% if active_host_info_inven.json.next is null %} true {% else %} false {% endif %}
+      until: {% if host_info_tmp.json.next is null %} true {% else %} false {% endif %}
 
     - name: Combine all results
       set_fact:
