@@ -23,7 +23,7 @@
 
     - name: get host test
       uri:
-        url: "http://localhost:8013/api/v2/hosts/"
+        url: "http://localhost:8013/api/v2/hosts/?page={{ item }}"
         method: GET
         status_code: 200
         headers:
@@ -35,4 +35,4 @@
         validate_certs: false
         return_content: yes
       register: host_info_tmp2
-      with_sequence: start=1 end="{{ total_pages }}"
+      loop: "{{ range(1, total_pages + 1) | list }}"
