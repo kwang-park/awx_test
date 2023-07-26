@@ -35,4 +35,4 @@
         validate_certs: false
         return_content: yes
       register: host_info_tmp2
-      with_sequence: start=1 end=total_pages
+      with_sequence: start=1 end="{{ total_pages }}"
