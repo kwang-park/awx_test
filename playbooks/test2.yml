@@ -41,3 +41,8 @@
       debug:
         var: item.json.results
       loop: "{{ host_info_tmp2.results }}"
+
+    - name: set list test
+      set_fact:
+        result_list: "{{ result_list | default([]) + ({{ item.json }} | map(attribute='results') | flatten) }}"
+        loop: "{{ host_info_tmp2.results }}"
