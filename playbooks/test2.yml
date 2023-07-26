@@ -15,24 +15,24 @@
         password: "{{ PASSWORD }}"
         validate_certs: false
         return_content: yes
-      register: host_info_tmp
+      register: host_info_tmp1
 
     - name: Parse Link header
       set_fact:
         total_pages: "{{ host_info_tmp.json | regex_findall('page=(\\d+)') | map('int') | max }}"
 
-      #until: host_info_tmp.json.next == "null"
-      #until: host_info_tmp.json.next is 'null'
-      #until: "{{ host_info_tmp.json.next is 'null' }}"
-      #until: host_info_tmp.json.next is {{ null }}
-      #until: host_info_tmp.json.next is null
-      #until: {% if host_info_tmp.json.next is null %} true {% else %} false {% endif %}
-
-        #    - name: Combine all results
-        #      set_fact:
-        #        combined_results: "{{ combined_results | default([]) + host_info_tmp.json }}"
-        #
-        #    - name: print next
-        #      debug:
-        #        var: "{{ item.next }}"
-        #      loop: combined_results
+    - name: get host test
+      uri:
+        url: "http://localhost:8013/api/v2/hosts/"
+        method: GET
+        status_code: 200
+        headers:
+          Content-Type: application/json
+        body_format: json
+        force_basic_auth: yes
+        user: "moreh"
+        password: "{{ PASSWORD }}"
+        validate_certs: false
+        return_content: yes
+      register: host_info_tmp2
+       with_sequence: start=1 end="{{ total_pages }}"
