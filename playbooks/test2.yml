@@ -19,7 +19,7 @@
 
     - name: Parse Link header
       set_fact:
-        total_pages: "{{ host_info_tmp.headers.Link | regex_findall('page=(\\d+)') | map('int') | max }}"
+        total_pages: "{{ host_info_tmp.json | regex_findall('page=(\\d+)') | map('int') | max }}"
 
       #until: host_info_tmp.json.next == "null"
       #until: host_info_tmp.json.next is 'null'
