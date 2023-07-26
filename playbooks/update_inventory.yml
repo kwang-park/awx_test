@@ -23,7 +23,7 @@
         password: "{{ PASSWORD }}"
         validate_certs: false
       register: active_host_info_inven
-      until: {% if active_host_info_inven.json.next is null %} True {% else %} False {% endif %}
+      until: {% if active_host_info_inven.json.next is not null %} true {% else %} false {% endif %}
 
     - name: set shutdown host list
       set_fact:
