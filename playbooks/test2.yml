@@ -27,7 +27,7 @@
 
     - name: Convert total_pages to int
       set_fact:
-        total_pages: "{{ toal_pages_tmp | int }}"
+        total_pages: "{{ total_pages_tmp | int }}"
 
     - name: get host test
       uri:
