@@ -18,8 +18,8 @@
       until: host_info_tmp.json.next == "null" or host_info_tmp.json.next is not defined
 
     - name: Combine all results
-        set_fact:
-          combined_results: "{{ combined_results | default([]) + host_info_tmp.json }}"
+      set_fact:
+        combined_results: "{{ combined_results | default([]) + host_info_tmp.json }}"
 
     - name: print next
       debug:
