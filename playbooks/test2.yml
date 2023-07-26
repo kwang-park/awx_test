@@ -14,7 +14,7 @@
         user: "moreh"
         password: "{{ PASSWORD }}"
         validate_certs: false
-        return_content: yes
+        return_content: no
       register: host_info_tmp1
 
     - name: Parse Link header
