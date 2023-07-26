@@ -35,4 +35,4 @@
         validate_certs: false
         return_content: yes
       register: host_info_tmp2
-      loop: "{{ range(1, total_pages + 1) | list }}"
+      loop: "{{ range(1, {{ total_pages }} + 1) | list }}"
