@@ -2,42 +2,8 @@
 - name: test
   hosts: all
   tasks:
-    - name: get host info
-      uri:
-        url: "http://localhost:8013/api/v2/hosts/?host_filter=name=office-mac%20and%20inventory=2"
-        method: GET
-        status_code: 200
-        headers:
-          Content-Type: application/json
-        body_format: json
-        force_basic_auth: yes
-        user: "moreh"
-        password: "{{ PASSWORD }}"
-        validate_certs: false
-      register: host_info_tmp
-      loop: [1, 2, 3]
-
-    - name: set host id list
-      set_fact:
-        host_id: "{{ host_id | default([]) + [item.json.results[0]] }}"
-      loop: "{{ host_info_tmp.results }}"
-
-    - name: change enabled test
-      uri:
-        url: "http://localhost:8013/api/v2/hosts/{{ item.id }}/"
-        method: PUT
-        status_code: 200
-        headers:
-          Content-Type: application/json
-        body_format: json
-        body:
-          name: "{{ item.name }}"
-          inventory: 2
-          enabled: "{{ ENABLED_TO }}"
-        force_basic_auth: yes
-        user: "moreh"
-        password: "{{ PASSWORD }}"
-        validate_certs: false
-      register: response_result
-      when: item.enabled == false
-      loop: "{{ host_id }}"
+    - name: docker image tag and push prod
+      docker_image:
+        name: mysql:8.1.0
+        tag: moreh:23.9.0-pytorch1.7.1
+        source: local
