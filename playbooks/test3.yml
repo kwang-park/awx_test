@@ -11,6 +11,6 @@
         test_list: "{{ test_stdout.stdout.split() }}"
 
     - name: test print
-      command: echo {{ ansible_loop.index0 }}
+      command: echo "{{ item.0 }} - {{ item.1 }}"
       with_items:
         - "{{ test_list }}"
