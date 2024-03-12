@@ -3,7 +3,7 @@
   hosts: all
   tasks:
     - name: get job stdout
-      shell: echo "0 1 2 3 4"
+      shell: echo "100 200 300 400 500"
       register: test_stdout
 
     - name: register list
