@@ -12,5 +12,5 @@
 
     - name: test print
       command: echo "{{ item.0 }} - {{ item.1 }}"
-      with_items:
+      with_indexed_items:
         - "{{ test_list }}"
