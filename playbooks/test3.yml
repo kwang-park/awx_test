@@ -3,24 +3,13 @@
   hosts: all
   tasks:
     - name: get job stdout
-      uri:
-        url: "http://localhost:8013/api/v2/jobs/326/stdout?format=json"
-        method: GET
-        status_code: 200
-        headers:
-          Content-Type: application/json
-        body_format: json
-        force_basic_auth: yes
-        user: "moreh"
-        password: "Framework4AI!"
-        validate_certs: false
-      register: response_result
+      shell: echo "0 1 2 3 4"
+      register: test_stdout
 
-    - name: get list
+    - name: register list
       set_fact:
-        test_list: "{{ response_result.json.content | from_json }}"
+        test_list: "{{ test_stdout.stdout.split() }}"
 
-
-    - name: print
-      debug:
-        var: test_list
+    - name: test print
+      command: echo {{ ansible_loop.index0 }}
+      with_items: {{ test_list }}
