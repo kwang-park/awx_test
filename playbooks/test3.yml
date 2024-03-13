@@ -2,19 +2,19 @@
 - name: Example Playbook
   hosts: all
   tasks:
-    - name: get job stdout
-      shell: echo "100 200 300 400 500"
-      register: test_stdout
-
-    - name: register list
-      set_fact:
-        test_list: "{{ test_stdout.stdout.split() }}"
-
-    - name: test print
-      command: echo "{{ item.0 }} - {{ item.1 }}"
-      with_indexed_items:
-        - "{{ test_list }}"
-
+#    - name: get job stdout
+#      shell: echo "100 200 300 400 500"
+#      register: test_stdout
+#
+#    - name: register list
+#      set_fact:
+#        test_list: "{{ test_stdout.stdout.split() }}"
+#
+#    - name: test print
+#      command: echo "{{ item.0 }} - {{ item.1 }}"
+#      with_indexed_items:
+#        - "{{ test_list }}"
+#
     - name : testtest
       debug:
         msg: "Test Print {{ hostvars['master node']['ansible_host'] }}"

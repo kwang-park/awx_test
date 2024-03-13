@@ -2,8 +2,6 @@
 - name: test
   hosts: all
   tasks:
-    - name: docker image tag and push prod
-      docker_image:
-        name: mysql:8.1.0
-        tag: moreh:23.9.0-pytorch1.7.1
-        source: local
+    - name: Job A
+      extra_vars:
+        TEST_VAR1: "TESTTEST"
