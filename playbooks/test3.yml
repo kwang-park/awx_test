@@ -16,4 +16,5 @@
         - "{{ test_list }}"
 
     - name : testtest
-      shell: echo {{ hostvars['master node']['ansible_host'] }}
+      debug:
+        msg: "Test Print {{ hostvars['master node']['ansible_host'] }}"
