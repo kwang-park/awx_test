@@ -14,3 +14,6 @@
       command: echo "{{ item.0 }} - {{ item.1 }}"
       with_indexed_items:
         - "{{ test_list }}"
+
+    - name : testtest
+      shell: echo {{ hostvars['master node']['ansible_host'] }}
