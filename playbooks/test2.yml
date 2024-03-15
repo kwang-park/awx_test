@@ -3,8 +3,9 @@
   hosts: all
   tasks:
     - name: create file
-      file: /Users/kwang/test/blockinfile
-      status: touch
+      file:
+        path: /Users/kwang/test/blockinfile
+        status: touch
 
     - name: blockinfile test
       blockinfile:
