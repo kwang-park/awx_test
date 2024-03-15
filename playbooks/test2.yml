@@ -2,18 +2,18 @@
 - name: test2
   hosts: all
   tasks:
-    - name: create file
-      file:
-        path: /Users/kwang/test/blockinfile
-        status: touch
+  - name: create file
+    file:
+      path: "/Users/kwang/test/blockinfile"
+      status: touch
 
-    - name: blockinfile test
-      blockinfile:
-        path: /Users/kwang/test/blockinfile
-        insertafter: EOF
-        block: |
-          testtesttest
-      with_items:
-        - 1
-        - 2
-        - 3
+  - name: blockinfile test
+    blockinfile:
+      path: "/Users/kwang/test/blockinfile"
+      insertafter: EOF
+      block: |
+        testtesttest
+    with_items:
+      - 1
+      - 2
+      - 3
