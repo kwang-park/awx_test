@@ -2,6 +2,13 @@
 - name: test2
   hosts: all
   tasks:
-    - name: get host test
-      shell: echo "{{ workflow_jobs['Job A'].result.TEST_VAR1 }}"
-        
+    - name: blockinfile test
+      blockinfile:
+        path: /Users/kwang/test
+        insertafter: EOF
+        block: |
+          testtesttest
+      with_indexed_items:
+        - 1
+        - 2
+        - 3
