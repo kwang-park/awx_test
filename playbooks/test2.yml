@@ -4,7 +4,7 @@
   tasks:
     - name: blockinfile test
       blockinfile:
-        path: /Users/kwang/test
+        path: /Users/kwang/test/blockinfile
         insertafter: EOF
         block: |
           testtesttest
