@@ -9,7 +9,7 @@
       ignore_errors: yes
 
     - name: get id_rsa public key
-      command: echo `cat id_rsa.pub`
+      shell: echo `cat id_rsa.pub`
       args:
         chdir: "/Users/kwang/.ssh"
       register: public_key
