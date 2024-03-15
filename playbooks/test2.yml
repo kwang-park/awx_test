@@ -6,28 +6,41 @@
       file:
         path: "/Users/kwang/test/netplan/infiniband.yaml"
         state: absent
+
     - name: "touch netplan infiniband yaml"
       file:
         path: "/Users/kwang/test/netplan/infiniband.yaml"
         state: touch
-    - name: "write netplan infiniband yaml"
+
+    - name: ib ip setup-1
       blockinfile:
-        path: "/Users/kwang/test/netplan/infiniband.yaml"
-        marker: "# {mark} INSERTION START HERE"
+        path: /Users/kwang/test/netplan/inifiniband.yaml
+        insertafter: EOF
         block: |
           network:
             ethernets:
-              ib0:
-                addresses:
-                - 192.168.110.5
-                dhcp4: false
-              ib1:
-                addresses:
-                - 192.168.111.5
-                dhcp4: false
-    - name: "write netplan infiniband yaml2"
+
+    - name: ib ip setup-2
       blockinfile:
-        path: "/Users/kwang/test/netplan/infiniband.yaml"
-        marker: "# {mark} INSERTION END HERE"
+        path: /Users/kwang/test/netplan/inifiniband.yaml
+        insertafter: EOF
+        marker: "# {mark} ib{{item.0}} INSERTION"
         block: |
+          # ib {{item.0}}
+              ib{{item.0}}:
+                addresses:
+                - 192.168.temp.temp
+                dhcp4: false
+      with_indexed_items:
+        - 1
+        - 2
+        - 3
+
+    - name: ib ip setup-3
+      blockinfile:
+        path: /Users/kwang/test/netplan/inifiniband.yaml
+        insertafter: EOF
+        marker: "# {mark} INSERTION END"
+        block: |
+          # insert version
             version: 2
