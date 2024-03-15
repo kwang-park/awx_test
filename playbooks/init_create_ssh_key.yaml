@@ -3,7 +3,7 @@
   hosts: all
   tasks:
     - name: check ssh key
-      command: ls | grep id_rsa.pub
+      shell: ls | grep id_rsa.pub
       args:
         chdir: "/Users/kwang/.ssh/"
       register: check_pub_key
