@@ -8,7 +8,7 @@
         insertafter: EOF
         block: |
           testtesttest
-      with_indexed_items:
+      with_items:
         - 1
         - 2
         - 3
