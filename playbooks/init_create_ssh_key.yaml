@@ -2,18 +2,14 @@
 - name: create ssh key
   hosts: all
   tasks:
-    - name: check ssh key
-      shell: ls | grep id_rsa.pub
-      args:
-        chdir: "/Users/kwang/.ssh/"
-      register: check_pub_key
+    - name: check if ssh key exists
+      stat:
+        path: "/Users/kwang/.ssh/id_rsa.pub"
+      register: ssh_key_exists
 
-    - name: create ssh key
-      command: ssh-keygen -t rsa -f "{{ssh_key_path}}" -N ""
-      vars:
-        ssh_key_path: "/Users/kwang/.ssh/id_rsa"
-      ignore_errors: yes
-      when: check_pub_key is defined and check_pub_key != ""
+    - name: create ssh key if it doesn't exist
+      command: ssh-keygen -t rsa -f "/Users/kwang/.ssh/id_rsa" -N ""
+      when: not ssh_key_exists.stat.exists
 
     - name: get id_rsa public key
       shell: echo `cat id_rsa.pub`
