@@ -11,7 +11,7 @@
     - name: get id_rsa public key
       command: echo `cat id_rsa.pub`
       args:
-        chdir: "/home/moreh/.ssh"
+        chdir: "/Users/kwang/.ssh"
       register: public_key
 
     - name: print public key
