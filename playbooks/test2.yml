@@ -2,9 +2,6 @@
 - name: Change Infiniband Subnet
   hosts: all
   tasks:
-  - name: "get device index"
-    shell: echo `hostname` | grep -o '[1-9][0-9]*$'
-    register: device_id
   - name: "delete netplan infiniband yaml"
     file:
       path: "/Users/kwang/test/netplan/infiniband.yaml"
@@ -22,11 +19,11 @@
           ethernets:
             ib0:
               addresses:
-              - 192.168.110.{{ device_id.stdout }}/18
+              - 192.168.110.5
               dhcp4: false
             ib1:
               addresses:
-              - 192.168.111.{{ device_id.stdout }}/18
+              - 192.168.111.5
               dhcp4: false
   - name: "write netplan infiniband yaml2"
     blockinfile:
