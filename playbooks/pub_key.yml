@@ -1,0 +1,57 @@
+---
+- name: rest api test
+  hosts: all
+  tasks:
+    - name: get ssh public key 1
+      uri:
+        url: "{{ AWX_URL }}/api/v2/job_templates/?name=[Init]%20(4)Create%20Public%20SSH%20Key"
+        method: GET
+        status_code: 200
+        headers:
+          Content-Type: application/json
+        body_format: json
+        force_basic_auth: yes
+        user: "{{ AWX_ID }}"
+        password: "{{ AWX_PW }}"
+        validate_certs: false
+        return_content: no
+      register: create_key_template_id
+
+    - name: get ssh public key 2
+      uri:
+        url: "{{ AWX_URL }}/api/v2/job_templates/{{ create_key_template_id.json.results[0].id }}/"
+        method: GET
+        status_code: 200
+        headers:
+          Content-Type: application/json
+        body_format: json
+        force_basic_auth: yes
+        user: "{{ AWX_ID }}"
+        password: "{{ AWX_PW }}"
+        validate_certs: false
+      register: response_result1
+
+    - name: get ssh public key 3
+      set_fact:
+        job_number: "{{ response_result1.json.summary_fields.last_job.id }}"
+
+    - name: get ssh public key 4
+      uri:
+        url: "{{ AWX_URL }}/api/v2/jobs/{{ job_number }}/stdout?format=json"
+        method: GET
+        status_code: 200
+        headers:
+          Content-Type: application/json
+        body_format: json
+        force_basic_auth: yes
+        user: "{{ AWX_ID }}"
+        password: "{{ AWX_PW }}"
+        validate_certs: false
+      register: response_result2
+
+    - name: get ssh public key 5
+      set_fact:
+        id_rsa_pub: "{{ response_result2.json.content | regex_findall('.*public_key : ([^\\\"]+).*', '\\1') | unique }}"
+
+    - name: print ssh public key
+      command: echo {{id_rsa_pub}}

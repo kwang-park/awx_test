@@ -1,0 +1,20 @@
+---
+- name: create ssh key
+  hosts: all
+  tasks:
+    - name: create ssh key
+      command: ssh-keygen -t rsa -f "{{ssh_key_path}}" -N ""
+      vars:
+        ssh_key_path: "/Users/kwang/.ssh/id_rsa"
+      ignore_errors: yes
+
+    - name: get id_rsa public key
+      command: echo `cat id_rsa.pub`
+      args:
+        chdir: "/home/moreh/.ssh"
+      register: public_key
+
+    - name: print public key
+      debug:
+        msg:
+          - "public_key : {{ public_key.stdout }}"

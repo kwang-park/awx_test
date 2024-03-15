@@ -1,7 +1,0 @@
----
-- name: rest api test
-  hosts: all
-  tasks:
-    - name: echo test
-      shell: |
-        echo "{{ TEST_VARIABLE2 }}"
