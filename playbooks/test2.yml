@@ -14,7 +14,7 @@
 
     - name: ib ip setup-1
       blockinfile:
-        path: /Users/kwang/test/netplan/inifiniband.yaml
+        path: /Users/kwang/test/netplan/infiniband.yaml
         insertafter: EOF
         block: |
           network:
@@ -22,7 +22,7 @@
 
     - name: ib ip setup-2
       blockinfile:
-        path: /Users/kwang/test/netplan/inifiniband.yaml
+        path: /Users/kwang/test/netplan/infiniband.yaml
         insertafter: EOF
         marker: "# {mark} ib{{item.0}} INSERTION"
         block: |
@@ -38,7 +38,7 @@
 
     - name: ib ip setup-3
       blockinfile:
-        path: /Users/kwang/test/netplan/inifiniband.yaml
+        path: /Users/kwang/test/netplan/infiniband.yaml
         insertafter: EOF
         marker: "# {mark} INSERTION END"
         block: |
