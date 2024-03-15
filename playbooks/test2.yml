@@ -5,7 +5,7 @@
   - name: create file
     file:
       path: "/Users/kwang/test/blockinfile"
-      status: touch
+      state: touch
 
   - name: blockinfile test
     blockinfile:
