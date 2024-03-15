@@ -12,8 +12,8 @@
       path: "/Users/kwang/test/blockinfile"
       insertafter: EOF
       block: |
-        testtesttest
-    with_items:
+        testtesttest{{item.0}}
+    with_indexed_items:
       - 1
       - 2
       - 3
