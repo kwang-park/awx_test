@@ -5,3 +5,6 @@
     - name: Job A
       debug:
         msg: "Current host index is {{ ansible_play_batch.index(inventory_hostname) + 1 }}"
+    - name: Job B
+      debug:
+        msg: "Current host index is {{ hostvars[inventory_hostname].inventory_hostname }}"
