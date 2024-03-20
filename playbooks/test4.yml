@@ -4,4 +4,4 @@
   tasks:
     - name: Job A
       debug:
-        msg: "Current host index is {{ ansible_play_batch.index(inventory_hostname) }}"
+        msg: "Current host index is {{ ansible_play_batch.index(inventory_hostname) + 1 }}"
