@@ -1,0 +1,41 @@
+---
+- name: test
+  hosts: all
+  tasks:
+    - name: "delete netplan infiniband yaml"
+      file:
+        path: "/etc/netplan/infiniband.yaml"
+        state: absent
+
+    - name: "touch netplan infiniband yaml"
+      file:
+        path: "/etc/netplan/infiniband.yaml"
+        state: touch
+
+    - name: ib start ip setup
+      set_fact:
+        ib_ip: "{{ IB_IP_START.split('.') }}"
+
+    - name: cur backend num setup
+      set_fact:
+        backend_num: "{{ ansible_play_batch.index(inventory_hostname) + 1 }}"
+
+    - name: ib ip setup-1
+      blockinfile:
+        path: /etc/netplan/infiniband.yaml
+        insertafter: EOF
+        block: |
+          network:
+            ethernets:
+
+    - name: ib ip setup-2
+      blockinfile:
+        path: /etc/netplan/infiniband.yaml
+        insertafter: EOF
+        marker: "# {mark} ib0 INSERTION"
+        block: |
+          # ib0
+              ib0:
+                addresses:
+                - {{ ib_ip[0] }}.{{ ib_ip[1] }}.{{ ib_ip[2] }}.{{ (C_ALPHA * (backend_num - 1) / D_ALPHA)}}.{{ ((backend_num - 1) % D_ALPHA) + 1 + (0 * D_ALPHA) }}
+                dhcp4: false
