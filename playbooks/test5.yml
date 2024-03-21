@@ -49,5 +49,5 @@
           # ib0
               ib0:
                 addresses:
-                - "{{ ib_ip[0] }}.{{ ib_ip[1] }}.{{ ib_ip[2] }} + {{ (C_ALPHA|int * (backend_num|int - 1) / D_ALPHA|int) }}.{{ (((backend_num|int - 1) % D_ALPHA|int) + 1 + (0 * D_ALPHA|int)) }}"
+                - "{{ ib_ip[0] }}.{{ ib_ip[1] }}.{{ ib_ip[2]|int + (C_ALPHA|int * (backend_num|int - 1) / D_ALPHA|int) }}.{{ (((backend_num|int - 1) % D_ALPHA|int) + 1 + (0 * D_ALPHA|int)) }}"
                 dhcp4: false
