@@ -32,22 +32,16 @@
           network:
             ethernets:
 
-    - name: print1
-      debug:
-        msg: "{{ (C_ALPHA|int * (backend_num|int - 1) / D_ALPHA|int) }}"
-
-    - name: print2
-      debug:
-        msg: "{{ (((backend_num|int - 1) % D_ALPHA|int) + 1 + (0 * D_ALPHA|int)) }}"
-
     - name: ib ip setup-2
       blockinfile:
         path: /etc/netplan/infiniband.yaml
         insertafter: EOF
-        marker: "# {mark} ib0 INSERTION"
+        marker: "# {mark} ib{{item.0}} INSERTION"
         block: |
-          # ib0
-              ib0:
+          # ib {{item.0}}
+              ib{{item.0}}:
                 addresses:
-                - "{{ ib_ip[0] }}.{{ ib_ip[1] }}.{{ ib_ip[2]|int + (C_ALPHA|int * (backend_num|int - 1) / D_ALPHA|int)|int }}.{{ (((backend_num|int - 1) % D_ALPHA|int) + 1 + (0 * D_ALPHA|int)) }}"
+                - "{{ ib_ip[0] }}.{{ ib_ip[1] }}.{{ ib_ip[2]|int + (C_ALPHA|int * (backend_num|int - 1) / D_ALPHA|int)|int }}.{{ (((backend_num|int - 1) % D_ALPHA|int) + 1 + (item.0 * D_ALPHA|int)) }}"
                 dhcp4: false
+      with_indexed_items:
+        - "{{ ib_ip }}"
