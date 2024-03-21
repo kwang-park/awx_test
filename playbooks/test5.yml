@@ -32,6 +32,14 @@
           network:
             ethernets:
 
+    - name: print1
+      debug:
+        msg: "{{ (C_ALPHA|int * (backend_num|int - 1) / D_ALPHA|int)|int }}"
+
+    - name: print2
+      debug:
+        msg: "{{ (((backend_num|int - 1) % D_ALPHA|int) + 1 + (0 * D_ALPHA|int))|int }}"
+
     - name: ib ip setup-2
       blockinfile:
         path: /etc/netplan/infiniband.yaml
