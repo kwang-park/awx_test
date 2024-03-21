@@ -20,6 +20,10 @@
       set_fact:
         backend_num: "{{ ansible_play_batch.index(inventory_hostname) + 1 }}"
 
+    - name: print backend num
+      debug:
+        msg: "{{backend_num}}"
+
     - name: ib ip setup-1
       blockinfile:
         path: /etc/netplan/infiniband.yaml
